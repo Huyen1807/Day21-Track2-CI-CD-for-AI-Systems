@@ -77,13 +77,13 @@ def train(
         print(f"Accuracy: {acc:.4f} | F1: {f1:.4f}")
 
         # TODO 8: Luu metrics ra file outputs/metrics.json
-        # File nay duoc doc boi GitHub Actions o Buoc 2
+        # Doc boi GitHub Actions o Buoc 2
         os.makedirs("outputs", exist_ok=True)
         with open("outputs/metrics.json", "w") as f:
             json.dump({"accuracy": acc, "f1_score": f1}, f)
 
-        # TODO 9: Luu mo hinh ra file models/model.pkl
-        # File nay duoc upload len GCS o Buoc 2
+        # TODO 9: Luu mo hinh vao file models/model.pkl
+        # Upload len GCS o Buoc 2
         os.makedirs("models", exist_ok=True)
         joblib.dump(model, "models/model.pkl")
 
