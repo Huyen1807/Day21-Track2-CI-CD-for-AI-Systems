@@ -263,7 +263,7 @@ After=network.target
 [Service]
 User=$USER
 WorkingDirectory=/home/$USER
-Environment="GCS_BUCKET=<YOUR_BUCKET_NAME>"
+Environment="GCS_BUCKET=my_bucket_1807"
 Environment="GOOGLE_APPLICATION_CREDENTIALS=/home/$USER/sa-key.json"
 ExecStart=/usr/bin/python3 /home/$USER/src/serve.py
 Restart=always
