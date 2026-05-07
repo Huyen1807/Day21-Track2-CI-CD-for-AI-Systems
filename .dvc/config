@@ -1,0 +1,5 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = gs://my_bucket_1807/dvc
+    credentialpath = ../sa-key.json
