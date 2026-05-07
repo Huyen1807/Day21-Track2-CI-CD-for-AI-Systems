@@ -38,6 +38,21 @@ def train(
     X_eval  = df_eval.drop(columns=["target"])
     y_eval  = df_eval["target"]
 
+    # Ensure MLflow tracking directory and experiment exist (avoids CI file-store errors)
+    # Prefer an externally provided MLFLOW_TRACKING_URI or fallback to a file-based mlruns
+    tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
+    if not tracking_uri:
+        # Use repository-local `mlruns` directory so CI runners can write safely
+        from pathlib import Path
+
+        repo_root = Path(os.getcwd())
+        tracking_uri = str(repo_root.joinpath("mlruns").resolve().as_uri())
+    mlflow.set_tracking_uri(tracking_uri)
+
+    experiment_name = os.environ.get("MLFLOW_EXPERIMENT_NAME", "mlops_lab")
+    # This will create the experiment if it does not exist
+    mlflow.set_experiment(experiment_name)
+
     with mlflow.start_run():
 
         # TODO 3: Ghi nhan cac sieu tham so
